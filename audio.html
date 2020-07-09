@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<button type="">点击</button>
+	<script type="text/javascript">
+		if (navigator.mediaDevices === undefined) {
+		    navigator.mediaDevices = {};
+		}
+		if (navigator.mediaDevices.getUserMedia === undefined) {
+		    navigator.mediaDevices.getUserMedia = function (constraints) {
+		    var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+			if (!getUserMedia) {
+			    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+			}
+			return new Promise(function (resolve, reject) {
+				getUserMedia.call(navigator, constraints, resolve, reject);
+			});
+		  }
+		}
+	</script>
+</body>
+</html>
