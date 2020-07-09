@@ -19,13 +19,19 @@
 		    navigator.mediaDevices.getUserMedia = function (constraints) {
 		    var getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
 			if (!getUserMedia) {
-			    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+				console.log("你的浏览器不支持访问用户媒体设备");
 			}
-			return new Promise(function (resolve, reject) {
-				getUserMedia.call(navigator, constraints, resolve, reject);
-			});
-		  }
-		}
+			// 最新标准API
+	        navigator.mediaDevices
+	          .getUserMedia(constrains)
+	          .then(stream => {
+	            console.log('success',stream)
+	          })
+	          .catch(err => {
+	            console.log('error',err)
+	          });
+			  }
+			}
 	</script>
 </body>
 </html>
