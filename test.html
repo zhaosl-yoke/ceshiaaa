@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="">
+    <script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+    <style type="text/css">
+        .radio{
+            display: flex;
+            align-items: center;
+            width: 100px;
+            cursor: pointer;
+        }
+        .yuan{/*大圈*/
+            display: block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ececec;/*这里写自己喜欢的颜色*/
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+        }
+        .radio>span.rdactive{
+            background: #EF6121;/*这里写自己喜欢的颜色*/
+        }
+        .yuan span{/*小圈*/
+            display: block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: white;/*这里写自己喜欢的颜色*/
+            margin: 0 auto;
+        }　
+    </style>
+</head>
+<body>
+    <div>
+        <input type="checkbox" name="">选择1
+        <input type="checkbox" name="">选择2
+        <input type="checkbox" name="">选择3
+    </div>
+    <div class="radio"><span class="yuan rdactive"><span></span></span>你丑你先</div>
+    <div class="radio"><span class="yuan"><span></span></span>你才丑你先</div>
+    <div class="radio"><span class="yuan"><span></span></span>你更丑你先</div>
+    <div class="box"></div>
+    <button>移除</button>
+    <input type="text" name="" readonly>
+    <script type="text/javascript">
+        $(".radio").children('.yuan').on('click',function(){
+            $('.rdactive').removeClass('rdactive');
+            $(this).addClass("rdactive").siblings().removeClass("rdactive");
+        })
+        var str = '<p>展现出这些中兄次之<img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/9e/2018new_yinxian_org.png"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/07/2018new_yun_org.png"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/87/2018new_zhouma_org.png"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/a2/2018new_shuai_org.png"><img src="http://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/71/2018new_touxiao_org.png"></p>'
+            $('.box').html(str);
+            // $('.box p').eq(-1).remove()
+            $('button').click(function() {
+                console.log($('.box p'))
+            })
+            function trimHtmlTag (htmlstr) {
+              return htmlstr.replace(/<\/?[a-zA-Z]+[1-9]?\s*(\s+[a-zA-Z]+=("[^</>]*"|'[^</>]*'|[^</>]*))*\/?>/g, '')
+            }
+            console.log(trimHtmlTag(str))
+        //思路分两步：作者（yanue）.
+        //1，匹配出图片img标签（即匹配出所有图片），过滤其他不需要的字符
+        //2.从匹配出来的结果（img标签中）循环匹配出图片地址（即src属性）
+        //匹配图片（g表示匹配所有结果i表示区分大小写）
+        var imgReg = /<img.*?(?:>|\/>)/gi;
+        var imgReg2 = /<\s*(\S+)(\s[^>]*)?>([\s\S]*)<\s*\/\1\s*>/
+        //匹配src属性
+        var srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+        var arr = str.match(imgReg);
+        var arr2 = str.match(imgReg2);
+        console.log('所有已成功匹配图片的数组：'+arr2);
+       
+        
+    </script>
+</body>
+</html>

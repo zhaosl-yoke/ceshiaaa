@@ -2,76 +2,70 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- 在这里需要引入JSAPI文件-->
-<script type="text/javascript" src="rxapi-0.1.0.0.js"></script>
+<script type="text/javascript" src="js/rxapi-0.1.0.0.js"></script>
 <script type="text/javascript">
+    function onOpenSingleChatSuccess() {
+        // 打开成功时会显示聊天界面并收到回调，一般不需要处理回调
+    }
 
-          function onOpenSingleChatSuccess() {
-            // 打开成功时会显示聊天界面并收到回调，一般不需要处理回调
-         }
+    function onOpenSingleChatFail(info) {
+        //打开聊天失败时会收到失败回调，可从回调参数里取出失败原因
+        var error = info.error;
+    }
 
-         function onOpenSingleChatFail(info) {
-          //打开聊天失败时会收到失败回调，可从回调参数里取出失败原因
-            var error = info.error;
-         }
-	
-         function onGetUserinfo(info) {
-         	  // info是包当前用户属性的JSON对象，以实际数据为准
-         }
+    function onGetUserinfo(info) {
+     	// info是包当前用户属性的JSON对象，以实际数据为准
+    }
 
-         function onGetToken(info) {
-           alert('onGetToken')
-         	  // info是包当前用户属性的JSON对象，以实际数据为准
-         }
-         function onShowFile(info) {
-           alert('onShowFile')
-         	  // info是包当前用户属性的JSON对象，以实际数据为准
-         }
-
-         
-
-
-         function onGetgeoPosition(result) {
-         	var status = result.status;   // status 0-成功，1-失败 desc为失败原因
-         	var lon = result.data.lon;    // 经度
-          var lat = result.data.lat;    // 纬度
-          var alt = result.data.alt;    // 高度，单位米
-          var acc = result.data.acc;    // 精度，单位米
-          var address = result.data.address;  // 位置描述，显示地址时用
-          var desc = result.desc;       // 错误信息，在status不为0时有值
-         }
-
+    function onGetToken(info) {
+        alert('onGetToken')
+    	// info是包当前用户属性的JSON对象，以实际数据为准
+    }
+    function onShowFile(info) {
+        alert('onShowFile')
+    	// info是包当前用户属性的JSON对象，以实际数据为准
+    }
+    function onGetgeoPosition(result) {
+    	var status = result.status;   // status 0-成功，1-失败 desc为失败原因
+    	var lon = result.data.lon;    // 经度
+        var lat = result.data.lat;    // 纬度
+        var alt = result.data.alt;    // 高度，单位米
+        var acc = result.data.acc;    // 精度，单位米
+        var address = result.data.address;  // 位置描述，显示地址时用
+        var desc = result.desc;       // 错误信息，在status不为0时有值
+    }
 </script>	
 </head>
 <body>
-<p>....................................</p>
-<p>....................................</p>
-<!-- 打开聊天窗口-->
-<!-- 参数1： 企业ID-->
-<!-- 参数2：用户账号-->
-<!-- 参数3：成功回调函数-->
-<!-- 参数4：失败回调函数-->
-<a href="javascript:void(0);" onclick="rx.biz.chat.openSingleChat(1, 'useraccount', onOpenSingleChatSuccess, onOpenSingleChatFail)">.....打开单聊窗口</a>     
-<p>....................................</p>
-<!-- 获取地理位置-->
-<!-- 参数1：期望精度，单位米，实际精度以返回的为准，不一定能达到这个精度-->
-<!-- 参数2：坐标系统，0-标准坐标，1-火星坐标-->
-<!-- 参数3：完成时的回调，在回调里判断成功与否-->
-<a href="javascript:void(0);" onclick="HFECKit.tools.getGeoPosition(10, 0, onGetgeoPosition)">.....获取地理位置</a>
-<p>....................................</p>
-<!-- 获取当前用户信息，成功时在回调函数接收用户信息-->
-<a href="javascript:void(0);" onclick="rx.security.getUserinfo(onGetUserinfo)">.....获取用户信息</a>
-<p>....................................</p>
+    <p>....................................</p>
+    <p>....................................</p>
+    <!-- 打开聊天窗口-->
+    <!-- 参数1： 企业ID-->
+    <!-- 参数2：用户账号-->
+    <!-- 参数3：成功回调函数-->
+    <!-- 参数4：失败回调函数-->
+    <a href="javascript:void(0);" onclick="rx.biz.chat.openSingleChat(1, 'useraccount', onOpenSingleChatSuccess, onOpenSingleChatFail)">.....打开单聊窗口</a>     
+    <p>....................................</p>
+    <!-- 获取地理位置-->
+    <!-- 参数1：期望精度，单位米，实际精度以返回的为准，不一定能达到这个精度-->
+    <!-- 参数2：坐标系统，0-标准坐标，1-火星坐标-->
+    <!-- 参数3：完成时的回调，在回调里判断成功与否-->
+    <a href="javascript:void(0);" onclick="HFECKit.tools.getGeoPosition(10, 0, onGetgeoPosition)">.....获取地理位置</a>
+    <p>....................................</p>
+    <!-- 获取当前用户信息，成功时在回调函数接收用户信息-->
+    <a href="javascript:void(0);" onclick="rx.security.getUserinfo(onGetUserinfo)">.....获取用户信息</a>
+    <p>....................................</p>
 
 
-<p>....................................</p>
-<!-- 获取当前用户信息，成功时在回调函数接收用户信息-->
-<a href="javascript:void(0);" onclick="rx.security.getToken(onGetToken)">.....获取用户Token</a>
-<p>....................................</p>
+    <p>....................................</p>
+    <!-- 获取当前用户信息，成功时在回调函数接收用户信息-->
+    <a href="javascript:void(0);" onclick="rx.security.getToken(onGetToken)">.....获取用户Token</a>
+    <p>....................................</p>
 
 
-<p>....................................</p>
-<!-- onShowFile-->
-<a href="javascript:void(0);" onclick="rx.tools.showFile(onShowFile)">......获取用户onShowFile</a>
-<p>....................................</p>
+    <p>....................................</p>
+    <!-- onShowFile-->
+    <a href="javascript:void(0);" onclick="rx.tools.showFile(onShowFile)">......获取用户onShowFile</a>
+    <p>....................................</p>
 </body>
 </html>

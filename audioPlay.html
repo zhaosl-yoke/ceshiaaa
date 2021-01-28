@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+	</head>
+	<body>
+		<!-- 测试音频暂停后重新播放 -->
+		音乐<audio src="img/Ring.mp3" controls="controls" preload id="music1" hidden></audio>
+		<button onclick="play();">播放</button>
+		<button onclick="pause();">暂停</button>
+		<button onclick="bf();">重新播放</button>
+		<script>
+			// 测试音频暂停后重新播放
+			function play(){
+				var audio = document.getElementById('music1'); 
+				audio.play();
+			}
+			function pause(){
+				var audio = document.getElementById('music1'); 
+				audio.pause();
+			}
+			function bf(){
+				var audio = document.getElementById('music1'); 
+				audio.currentTime = 0;
+				audio.play();
+			}
+
+			// 测试获取文件后缀
+			let s = 'demo2.FLV';
+			const fileType = s.substring(s.lastIndexOf(".")+1).toLowerCase();
+			console.log(fileType)
+		</script>
+	</body>
+</html>

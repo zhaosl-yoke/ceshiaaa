@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+	<button>掉接口</button>
+	<a href="http://192.168.80.174:18087/email/redirectEmail/123">掉接口</a>
+	<script type="text/javascript">
+		$('button').click(function() {
+			$.ajax({
+	            type: "get",
+	            url: "http://192.168.80.174:18087/email/redirectEmail/123",
+	            // contentType:'application/json',
+	            dataType: "json",
+	            success: function(data){
+                	console.log(data)    
+                }
+	        });
+		})
+	</script>
+</body>
+</html>

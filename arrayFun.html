@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script type="text/javascript">
+		const students = [
+		    { name: 'Alice', score: 100 },
+		    { name: 'Bob', score: 90 },
+		    { name: 'Trunp', score: 80 },
+		    { name: 'Biden', score: 70 },
+		    { name: 'Joe', score: 60 },
+		    { name: 'Sunshine', score: 50 },
+		    { name: 'Elon', score: 40 },
+		    { name: 'Jack', score: 30 },
+		];
+		// filter   ---------过滤方法，返回符合条件的元素
+		//返回成绩大于75的高分学生
+		const highScores = students.filter(stu => stu.score > 75);
+		// console.log(highScores);
+
+		// map ------将数组内的item转化成另一种对象，类似于Java的Fucntion<T,R>接口。
+		//返回全部对象的name属性
+		const names = students.map(stu => stu.name);
+		// console.log(names);
+
+		// find -------类似于filter方法，但返回第一个符合条件的元素。filter返回一个数组，find返回一个object。
+		//返回name长度为4的第一个对象
+		const foundedOne = students.find(stu=>stu.name.length === 4);
+		// console.log(foundedOne);
+
+		//forEach ---------遍历数组内全部元素。
+		//打印元素
+		// students.forEach(item=>console.log(`stu-name=${item.name},stu-score=${item.score}`));
+
+		//some -----当数组中有一个符合条件，则返回true，否则返回false。
+		//是否至少有一个name为Jack的
+		const isSome = students.some(item=>item.name === 'Jack');
+		// console.log(isSome);
+
+		//every -------功能类似于some，但要求每一个元素都符合条件才返回true。
+		//是否score都大于70
+		const isEvery = students.every(item=>item.score > 70);
+		// console.log(isEvery);
+
+
+		//includes -----是否包含指定的元素值。
+		const isIncludes = students.includes({ name: 'Jack', score: 30 });
+		console.log(isIncludes); // 虽然提供了和最后一个元素的一摸一样的{name: 'Jack', score: 30}，但仍然返回false，说明两个对象不是指向同一个引用。
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>capture screen</title>
+    </head>
+<style>
+    #video{
+        width: 300px;
+        height: 300px;
+    }
+</style>
+<body>
+<video id="video" controls="controls">
+    <!-- 视频连接替换自己视频就Ok了 -->
+    <source src="https://192.168.27.101:8889/vtm/2333d117bc924a0795df83f98aede913/pytest/1608617821525116948.mp4">
+</video>
+<div id="output"></div>
+<script type="text/javascript">
+    (function(){
+    var video, output;
+        output = document.getElementById("output");
+        var canvas = document.createElement('canvas')
+        var img = document.createElement("img");
+        video = document.getElementById('video')
+        video.setAttribute('crossOrigin', 'anonymous')
+        canvas.width = video.clientWidth
+        canvas.height = video.clientHeight
+        video.onloadeddata = (() => {
+        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height)
+        var dataURL = canvas.toDataURL('image/png')
+            img.src = dataURL;
+            img.width = 400;
+            img.height = 300;
+            output.appendChild(img);
+            console.log(img)
+       })
+
+    })();
+</script>
+</body>
+</html>
