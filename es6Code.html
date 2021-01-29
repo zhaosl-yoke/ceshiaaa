@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>解决实际问题的ES6代码段</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div>
+		<p class="special">aeqweq</p>
+		<img src="img/4.png">
+	</div>
+	<script type="text/javascript">
+
+		// 参考地址：https://mp.weixin.qq.com/s/90AAYCiaTF_4kWQK91VHjg
+
+
+		// 1、如何隐藏所有指定元素？
+		const hide = (...el) => [...el].forEach(e => (e[0].style.display = 'none'));
+ 		// Example 
+ 		hide(document.querySelectorAll('img')); // 隐藏页面上的所有img元素
+
+
+ 		// 2、 如何确认元素是否具有指定的类？
+ 		const hasClass = (el, className) => el.classList.contains(className); 
+		// Example 
+		hasClass(document.querySelector('p.special'), 'special'); // true
+
+
+		// 3、 如何切换元素的类？
+		const toggleClass = (el, className) => el.classList.toggle(className); 
+		// Example 
+		toggleClass(document.querySelector('p.special'), 'special2'); 
+ 		// 该段不再有 'special' 类
+	</script>
+</body>
+</html>
