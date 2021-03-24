@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.5.0/fabric.min.js"></script>
+	<script src="js/jquery-1.8.1.min.js"></script>
+	<button id="add-text-btn">Add text</button><br><br>
+	<textarea rows="7" id="add-text-value">Your Text Here</textarea>
+	<br>
+	<input id="text-font-size" type="text" class="form-control">
+	<canvas id='canvas' width="500" height="400" style="border:#000 1px solid;"></canvas>
+	<script type="text/javascript">
+		var canvas = new fabric.Canvas('canvas');
+$(document).ready(function() {
+  $('#text-font-size').keyup(function() {
+    var val = $(this).val();
+    if (isNaN(val)) {
+      alert('please enter number');
+      $(this).val('');
+    }
+    var activeObject = canvas.getActiveObject();
+    activeObject.fontSize = val;
+    canvas.renderAll();
+  });
+  $('#add-text-btn').click(function() {
+    if ($('#text-font-size').val()) {
+      var txtfontsize = $('#text-font-size').val();
+    } else {
+      var txtfontsize = 40;
+    }
+    var message = $('#add-text-value').val();
+    //var txtfontfamily = $('#font-family').val();
+    var new_text = new fabric.IText(message, {
+      left: 100,
+      top: 100,
+      fontSize: txtfontsize,
+      lockUniScaling: true,
+      //fontFamily: txtfontfamily,
+      fill: '#000'
+    });
+    canvas.add(new_text);
+    canvas.setActiveObject(new_text);
+  });
+
+  canvas.on('object:selected', function(options) {
+    if (options.target) {
+      $("textarea#add-text-value").val(options.target.text);
+      $("#text-font-size").val(options.target.fontSize);
+    }
+  });
+
+  canvas.on('object:scaling', function(event) {
+    if (event.target) {
+      $("textarea#add-text-value").val(event.target.text);
+      $("#text-font-size").val((event.target.fontSize * event.target.scaleX).toFixed(0));
+    }
+  });
+
+  canvas.on('object:modified', function(event) {
+    if (event.target) {
+      event.target.fontSize *= event.target.scaleX;
+      event.target.fontSize = event.target.fontSize.toFixed(0);
+      event.target.scaleX = 1;
+      event.target.scaleY = 1;
+      event.target._clearCache();
+      $("textarea#add-text-value").val(event.target.text);
+      $("#text-font-size").val(event.target.fontSize);
+    }
+  });
+
+});
+	</script>
+</body>
+</html>

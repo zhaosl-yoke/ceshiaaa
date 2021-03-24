@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+	<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+</head>
+<body>
+	<div class="ele">
+		
+	</div>
+	<div style="font-family: 'PingFang SC'">开发测试字体</div>
+	<script type="text/javascript">
+		// function test(obj) {
+		// 	for (let i = 0; i < obj.ops.length; i++) {
+		//     	setTimeout(function() {
+		//     		obj.ops[i].insert = '11111';
+		//     	},1000)
+	 //    	}
+	 //    	console.log(obj);
+	 //    	$('.ele').html(obj.ops[0].insert)
+	 //    	return obj;
+		// }
+		let obj = {
+			ops:[
+				{
+					'insert':'aaa',
+					'attr': 'bbb'
+				}
+			]
+		}
+		// test(obj);
+		// const arr = [1,2,3,4,5]
+		const res = []
+		function t(num,index) {
+		  return new Promise((resolve, reject) => {
+		    setTimeout(()=>{
+		    	if(index == 0) {
+		    		num.insert = '0000';
+		    	}
+		      console.log('定时器', num)
+		      resolve()
+		    }, 1000)
+		  })
+		}
+		 
+		function t2(item){
+		  console.log('进入res')
+		  res.push(item)
+		}
+		function test(arr) {
+			Promise.all(
+			  arr.map((item,index) =>{
+			    return new Promise(async (resolve, reject) =>{
+			      await t(item,index)
+			      t2(item)
+			      resolve()
+			    })
+			  })
+			).then(() =>{
+			  
+			})
+			$('.ele').html(arr[0].insert);
+			console.log(arr)
+			return arr;
+		}
+		test(obj.ops);
+	</script>
+</body>
+</html>
