@@ -67,6 +67,30 @@
 			return arr;
 		}
 		test(obj.ops);
+		var answerLiScore = [
+			{
+				name: '1',
+				result: 'rewr'
+			},
+			{
+				name: '1',
+				result: 'rewr5454'
+			},
+			{
+				name: '1',
+				result: 'rewr'
+			},
+			{
+				name: '4',
+				result: 'rewr'
+			}
+		];
+		function uniqueArr(arr, val){
+			const res = new Map();
+			return arr.filter(item => !res.has(item[val]) && res.set(item[val], 1))
+		}
+		answerLiScore = uniqueArr(answerLiScore,'name');
+		console.log(answerLiScore)
 	</script>
 </body>
 </html>

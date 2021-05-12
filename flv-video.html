@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>播放.flv视频</title>
+</head>
+ 
+<body>
+    <div id="mse"></div>
+        <script src="//sf1-ttcdn-tos.pstatp.com/obj/unpkg/xgplayer/2.9.6/browser/index.js" charset="utf-8"></script>
+        <script src="//sf1-ttcdn-tos.pstatp.com/obj/unpkg/xgplayer-flv.js/2.1.2/browser/index.js" charset="utf-8"></script>
+        <script type="text/javascript">
+        let player = new window.FlvJsPlayer({
+            id: 'mse',
+            isLive: false,
+            playsinline: true,
+            url: 'video/demo.flv',
+            autoplay: true
+        });
+		</script>
+</body>
+ 
+</html>

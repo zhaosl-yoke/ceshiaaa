@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        canvas {
+            border: 1px dashed black;
+        }
+    </style>
+    <link rel="stylesheet" href="css/jquery.contextMenu.min.css">
+    <script src="js/fabric.js"></script>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script src="js/jquery.contextMenu.min.js"></script>
+    <script src="js/jquery.ui.position.js"></script>
+    <script>
+        var canvas;
+        //菜单项
+        var contextMenuItems;
+
+        window.onload = function () {
+            canvas = new fabric.Canvas('canvas');
+
+            var rect1 = new fabric.Rect({ top: 50, left: 50, width: 70, height: 70, fill: 'red' });
+            canvas.add(rect1);
+            var rect2 = new fabric.Rect({ top: 50, left: 150, width: 70, height: 70, fill: 'red' });
+            canvas.add(rect2);
+            var rect3 = new fabric.Rect({ top: 50, left: 250, width: 70, height: 70, fill: 'red' });
+            canvas.add(rect3);
+
+            //在canvas上层对象上添加右键事件监听
+            $(".upper-canvas").contextmenu(onContextmenu);
+
+            //初始化右键菜单
+            $.contextMenu({
+                selector: '#contextmenu-output',
+                trigger: 'none',
+                build: function ($trigger, e) {
+                    //构建菜单项build方法在每次右键点击会执行
+                    return {
+                        callback: contextMenuClick,
+                        items: contextMenuItems
+                    };
+                },
+            });
+        }
+
+        //右键点击事件响应
+        function onContextmenu(event) {
+            var pointer = canvas.getPointer(event.originalEvent);
+            var objects = canvas.getObjects();
+            for (var i = objects.length - 1; i >= 0; i--) {
+                var object = objects[i];
+                console.log(canvas)
+                //判断该对象是否在鼠标点击处
+                if (canvas.containsPoint(event, object)) {
+                    //选中该对象
+                    canvas.setActiveObject(object);
+                    //显示菜单
+                    showContextMenu(event, object);
+                    continue;
+                }
+            }
+
+            //阻止系统右键菜单
+            event.preventDefault();
+            return false;
+        }
+
+        //右键菜单项点击
+        function showContextMenu(event, object) {
+            //定义右键菜单项
+            contextMenuItems = {
+                "delete": { name: "删除", icon: "delete", data: object },
+                "add": { name: "新增", icon: "add", data: object },
+            };
+            //右键菜单显示位置
+            var position = {
+                x: event.clientX,
+                y: event.clientY
+            }
+            $('#contextmenu-output').contextMenu(position);
+        }
+
+        //右键菜单项点击
+        function contextMenuClick(key, options) {
+            if (key == "delete") {
+                //得到对应的object并删除
+                var object = contextMenuItems[key].data;
+                canvas.remove(object);
+            }else if(key = "add"){
+                var rect3 = new fabric.Rect({ top: 50, left: 350, width: 70, height: 70, fill: 'red' });
+                canvas.add(rect3);
+                canvas.renderAll();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="canvas" width="450" height="200"></canvas>
+    <div id="contextmenu-output"></div>
+</body>
+
+</html>

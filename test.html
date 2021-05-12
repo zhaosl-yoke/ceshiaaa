@@ -50,6 +50,16 @@
     <a href="img/ReleaseNote.txt" target="_blank">PDF<a>
     <div class="box"></div>
     <button>移除</button>
+	<label for="country">请选择喜欢的国家:</label>
+	<input list="countries" name="country" id="country">
+	<datalist id="countries">
+		<option value="UK">
+		<option value="Germany">
+		<option value="USA">
+		<option value="Japan">
+		<option value="India">
+		<option value=“China”>
+	</datalist>
     <input type="text" name="" readonly>
     <script type="text/javascript">
         $(".radio").children('.yuan').on('click',function(){
@@ -93,6 +103,58 @@
         }
         console.log(new Date(2019, 12, 0).getDate());
         console.log(new Date(2018, 2, 0).getDate());
+		
+		
+		function toFixed(number, m) {
+		    if (typeof number !== 'number') {
+		        throw new Error("number不是数字");
+		    }
+		    let result = Math.round(Math.pow(10, m) * number) / Math.pow(10, m);
+		    result = String(result);
+		    if (result.indexOf(".") == -1) {
+		        if(m != 0){
+		            result += ".";
+		            result += new Array(m + 1).join('0');
+		        }
+		    } else {
+		        let arr = result.split('.');
+		        if (arr[1].length < m) {
+		            arr[1] += new Array(m - arr[1].length + 1).join('0')
+		        }
+		        result = arr.join('.')
+		    }
+		    return result
+		}
+		const object1 = {
+			a: 1,
+			b: 2,
+			c: 3
+		};
+		const object2 = Object.assign({c: 4, d: 5}, object1);
+		console.log(object2)
+		
+		var arr = [
+			{
+				name: 11
+			},
+			{
+				name: 22
+			},
+			{
+				name: 33
+			},
+			{
+				name: 44
+			}
+		]
+		arr.push({name:55})
+		console.log(arr);
+		for(var i = 0; i < arr.length; i++) {
+			if(i > 3) {
+				arr[i-4].name = arr[i].name
+			}
+		}
+		console.log(arr)
     </script>
 </body>
 </html>

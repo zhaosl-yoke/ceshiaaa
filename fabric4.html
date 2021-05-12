@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html, body {
+        height: 100%;
+        width: 100%;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+    <script src="js/fabric.js"></script>
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script>
+      var canvas;
+ 
+      var timer;
+ 
+      $(function() {
+        canvas = new fabric.Canvas('canvas',{backgroundColor: '#D6F8FF'});
+        //创建随机的方块
+        for(var i=0; i<20; i++){
+          var left = (Math.random() - 0.5) * 600;
+          var top = (Math.random() - 0.5) * 600;
+          var rect = new fabric.Rect({top: top, left: left, width: 70, height: 70, fill: 'orange'});
+          canvas.add(rect);
+        }
+ 
+        //添加窗口尺寸改变响应监听
+        $(window).resize(resizeCanvas);
+ 
+        //页面加载后先设置一下canvas大小
+        resizeCanvas();
+      });
+ 
+      //窗口尺寸改变响应（修改canvas大小）
+      function resizeCanvas() {
+        canvas.setWidth($(window).get(0).innerWidth);
+        canvas.setHeight($(window).get(0).innerHeight);
+ 
+        //缩放移动视图，使其适应Canvas大小
+        zoomToFitCanvas();
+      };
+ 
+      //缩放移动视图，使其适应Canvas大小
+      function zoomToFitCanvas() {
+        //先还原缩放比例与位置
+        canvas.setZoom(1);
+        canvas.absolutePan({x:0, y:0});
+ 
+        //遍历所有对对象，获取最小坐标，最大坐标
+        var objects = canvas.getObjects();
+        if(objects.length > 0 ){
+          var rect = objects[0].getBoundingRect();
+          var minX = rect.left;
+          var minY = rect.top;
+          var maxX = rect.left + rect.width;
+          var maxY = rect.top + rect.height;
+          for(var i = 1; i<objects.length; i++){
+            rect = objects[i].getBoundingRect();
+            minX = Math.min(minX, rect.left);
+            minY= Math.min(minY, rect.top);
+            maxX = Math.max(maxX, rect.left + rect.width);
+            maxY= Math.max(maxY, rect.top + rect.height);
+          }
+        }
+ 
+        //计算平移坐标
+        var panX = (maxX - minX - canvas.width)/2 + minX;
+        var panY = (maxY - minY - canvas.height)/2 + minY;
+        //开始平移
+        canvas.absolutePan({x:panX, y:panY});
+ 
+        //计算缩放比例
+        var zoom = Math.min(canvas.width/(maxX - minX), canvas.height/(maxY - minY));
+        //计算缩放中心
+        var zoomPoint = new fabric.Point(canvas.width / 2 , canvas.height / 2);
+        //开始缩放
+        canvas.zoomToPoint(zoomPoint, zoom);
+      }
+    </script>
+  </head>
+  <body>
+      <canvas id="canvas" width="400" height="250"></canvas>
+  </body>
+</html>

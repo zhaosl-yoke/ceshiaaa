@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			a{
+				text-decoration: none;
+				color: navajowhite;
+				display: block;
+			}
+			li{
+				list-style: none;
+				width: 160px;
+				height: 50px;
+				text-align: center;
+				line-height: 50px;
+				font-size: 20px;
+				float: left;
+				position: relative;
+			}
+			.big_nav{
+				height: 50px;
+				background-color: crimson;
+			}
+			.nav1{
+				height: 50px;
+				width: 800px;
+				margin: 0 auto;
+				background-color: crimson;
+			}
+			.nav1 ul li:hover{
+				background-color: #000000;
+			}
+			.nav1 ul li:hover .nav2{
+				display: block;
+			}
+			
+			.nav2 div a:hover{
+				background: #B9363D;
+				}
+				
+				
+				
+			.nav1 ul li .nav2 {
+				width: 160px;
+				height: 250px;
+				text-align: center;
+				line-height: 50px;
+				font-size: 20px;
+				background-color:#00FFFF;
+				position: absolute;
+				left: 0;
+				top: 50px;
+				z-index: 1000;
+				display: none;
+				}
+			
+		</style>
+	</head>
+	<body>
+		<div class="big_nav">
+			<div class="nav1">
+				<ul>
+					<li><a href="#">运动鞋</a>
+						<div class="nav2">
+						<div><a href="#">篮球鞋</a></div>
+						<div><a href="#">篮球鞋</a></div>
+						<div><a href="#">篮球鞋</a></div>
+						<div><a href="#">篮球鞋</a></div>
+						</div>
+					</li>
+					<li><a href="#">运动鞋</a></li>
+					<li><a href="#">运动鞋</a></li>
+					<li><a href="#">运动鞋</a></li>
+					<li><a href="#">运动鞋</a></li>
+				</ul>
+				
+			</div>
+			
+		</div>
+	</body>
+</html>
