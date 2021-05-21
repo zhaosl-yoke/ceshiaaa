@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        p{
+        /* p{
             width: 70px;
             height: 40px;
             line-height: 40px;
@@ -11,14 +11,45 @@
             text-align: justify;
         }
         p > span {
-            display: inline-block /* Opera */;
+            display: inline-block;
             padding-left: 100%;
-        }
+        } */
+		
+		div{
+			width:200px;
+			display: -webkit-box;
+			overflow: hidden;
+			white-space: normal!important;
+			text-overflow: ellipsis;
+			word-wrap: break-word;
+			-webkit-line-clamp: 5;
+			-webkit-box-orient: vertical;
+		}
+		.green{
+			width: 100%;
+			height: 200px;
+		}
+		.bot-box{
+			
+		}
     </style>
 </head>
 <body>
-    <p>你好<span></span></p>
+	<div>
+		<div class="mui-input-row mui-checkbox ">
+			<label>Checkbox</label>
+			<input name="Checkbox" type="checkbox" checked>
+			<div class="mui-input-row mui-radio ">
+				<label>Radio</label>
+				<input name="radio" type="radio" checked>
+				<input name="radio" type="radio" >
+			</div>
+		</div>
+		
+		啊实打实大所大奥所阿萨德阿萨德阿萨德啊实打实大所大奥所阿萨德阿萨德阿萨德啊实打实大所大奥所阿萨德阿萨德阿萨德啊实打实大所大奥所阿萨德阿萨德阿萨德啊实打实大所大奥所阿萨德阿萨德阿萨德啊实打实大所大奥所阿萨德阿萨德阿萨德
+	</div>
+    <!-- <p>你好<span></span></p>
     <p>大家好<span></span></p>
-    <p>同学们好<span></span></p>
+    <p>同学们好<span></span></p> -->
 </body>
 </html>
